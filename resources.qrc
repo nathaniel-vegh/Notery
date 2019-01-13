@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="rsc">
+    <file>rsc/ereader.png</file>
+    <file>rsc/studying.png</file>
+  </qresource>
+</RCC>
