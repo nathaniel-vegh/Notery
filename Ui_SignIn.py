@@ -7,12 +7,20 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import hashlib
+from PyQt5.QtSql import *
 
-class Ui_Dialog(object):
+class Ui_Dialog(QWidget):
+    is_admin_signal =  pyqtSignal()
+    is_student_signal = pyqtSignal(str)
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(486, 309)
-        Dialog.setStyleSheet("background-color:rgb(255, 255, 255)")
+        #Dialog.setStyleSheet("background-color:rgb(255, 255, 255)")
         Dialog.setSizeGripEnabled(True)
         self.SignUpButton = QtWidgets.QPushButton(Dialog)
         self.SignUpButton.setGeometry(QtCore.QRect(426, 5, 61, 31))
@@ -73,27 +81,29 @@ class Ui_Dialog(object):
         self.SignInPasswordLineEdit = QtWidgets.QLineEdit(self.widget)
         self.SignInPasswordLineEdit.setObjectName("SignInPasswordLineEdit")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.SignInPasswordLineEdit)
-        self.CreateAccountButton_2 = QtWidgets.QPushButton(Dialog)
-        self.CreateAccountButton_2.setGeometry(QtCore.QRect(164, 250, 152, 31))
+        self.SignInButton = QtWidgets.QPushButton(Dialog)
+        self.SignInButton.setGeometry(QtCore.QRect(164, 250, 152, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.CreateAccountButton_2.sizePolicy().hasHeightForWidth())
-        self.CreateAccountButton_2.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.SignInButton.sizePolicy().hasHeightForWidth())
+        self.SignInButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Candara")
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.CreateAccountButton_2.setFont(font)
-        self.CreateAccountButton_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.CreateAccountButton_2.setStyleSheet("background-color:rgb(32, 208, 194);\n"
+        self.SignInButton.setFont(font)
+        self.SignInButton.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.SignInButton.setStyleSheet("background-color:rgb(32, 208, 194);\n"
 "color:white;")
-        self.CreateAccountButton_2.setAutoDefault(True)
-        self.CreateAccountButton_2.setDefault(False)
-        self.CreateAccountButton_2.setFlat(False)
-        self.CreateAccountButton_2.setObjectName("CreateAccountButton_2")
+        self.SignInButton.setAutoDefault(True)
+        self.SignInButton.setDefault(False)
+        self.SignInButton.setFlat(False)
+        self.SignInButton.setObjectName("SignInButton")
 
+        self.SignInButton.clicked.connect(self.SignInCheck)
+        
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -105,7 +115,39 @@ class Ui_Dialog(object):
         self.label_15.setText(_translate("Dialog", "Don\'t have an account?"))
         self.IdLineEdit.setPlaceholderText(_translate("Dialog", "Id"))
         self.SignInPasswordLineEdit.setPlaceholderText(_translate("Dialog", "Password"))
-        self.CreateAccountButton_2.setText(_translate("Dialog", "Sign In"))
+        self.SignInButton.setText(_translate("Dialog", "Sign In"))
+
+    def SignInCheck(self):
+        studentId = self.IdLineEdit.text()
+        password = self.SignInPasswordLineEdit.text()
+        if (studentId == "" or password == ""):
+            print(QMessageBox.warning(self,  "Warning",  "User name and password cannot be empty", QMessageBox.Ok))
+            return
+        # databse
+        db = QSqlDatabase.addDatabase("QSQLITE")
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
+        db.open()
+        query = QSqlQuery()
+        sql = "SELECT * FROM User WHERE StudentId='%s'"%(studentId)
+        query.exec_(sql)
+        db.close()
+        
+        hl = hashlib.md5()
+        hl.update(password.encode(encoding='utf-8'))
+        if (not query.next()):
+            print(QMessageBox.information(self,  "Information",  "The account does not exist",  QMessageBox.Ok))
+        else:
+            if(studentId == query.value(0) and hl.hexdigest() == query.value(2)):
+                # If is admin
+                if (query.value(3)==1):
+                    self.is_admin_signal.emit()
+                else:
+                    self.is_student_signal.emit(studentId)
+            else:
+                print(QMessageBox.information(self,  "Information",  "Password incorrect",  QMessageBox.Ok))
+        return
+        
+        
 
 import resources_rc
 

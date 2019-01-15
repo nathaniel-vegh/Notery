@@ -200,7 +200,7 @@ class Ui_Dialog(QWidget):
         password = self.PasswordLineEdit.text()
         confirmPassword = self.ConfirmPassordLineEdit.text()
         if (studentId == "" or studentName == "" or password == "" or confirmPassword == ""):
-            print(QMessageBox.warning(self,  "Warning",  "Please input the correct information", QMessageBox.Ok))
+            print(QMessageBox.warning(self,  "Warning",  "Input cannot be empty", QMessageBox.Ok))
             return
         else:
             db = QSqlDatabase.addDatabase("QSQLITE")
