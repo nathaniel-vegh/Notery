@@ -14,6 +14,8 @@ from BookStorage import BookStorageViewer
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        font = QFont()
+        font.setFamily("Candara")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(973, 582)
         MainWindow.setIconSize(QtCore.QSize(50, 50))
@@ -86,7 +88,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("Notery", "Notery"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
         self.action_add_book.setText(_translate("MainWindow", "Add Book"))
         self.action_manage_students.setText(_translate("MainWindow", "Manage Students"))
@@ -102,6 +104,7 @@ import resources_rc
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    app.setWindowIcon(QIcon('./rsc/ereader.png'))
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)

@@ -28,10 +28,11 @@ class BookStorageViewer(QWidget):
         self.searchEdit = QLineEdit()
         self.searchEdit.setFixedHeight(32)
         font = QFont()
-        font.setPixelSize(15)
+        font.setFamily("Candara")
+        font.setPixelSize(14)
         self.searchEdit.setFont(font)
 
-        self.searchButton = QPushButton("Search")
+        self.searchButton = QPushButton("Search🔍")
         self.searchButton.setFixedHeight(32)
         self.searchButton.setFont(font)
         self.searchButton.setIcon(QIcon(QPixmap("./images/search.png")))
