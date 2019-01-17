@@ -15,7 +15,7 @@ from PyQt5.QtSql import *
 import hashlib
 
 class Ui_Dialog(QWidget):
-    student_signup_signal = pyqtSignal(str)
+    student_sign_up_signal = pyqtSignal(str)
         
     def setupUi(self, Dialog):
         Dialog.setObjectName("Notery")
@@ -225,7 +225,7 @@ class Ui_Dialog(QWidget):
                     db.exec_(sql)
                     db.commit()
                     print(QMessageBox.information(self, "Congrats!", "You've create your account", QMessageBox.Ok))
-                    self.student_signup_signal.emit(studentId)
+                    self.student_sign_up_signal.emit(studentId)
                 db.close()
                 return
                     

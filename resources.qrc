@@ -1,5 +1,15 @@
 <RCC>
   <qresource prefix="rsc">
+    <file>rsc/add_record_button.png</file>
+    <file>rsc/edit_button.png</file>
+    <file>rsc/manage_ebooks_button.png</file>
+    <file>rsc/manage_students_button.png</file>
+    <file>rsc/report.png</file>
+    <file>rsc/search_button.png</file>
+    <file>rsc/settings_button.png</file>
+    <file>rsc/star_button.png</file>
+    <file>rsc/trash_button.png</file>
+    <file>rsc/view_button.png</file>
     <file>rsc/ereader.png</file>
     <file>rsc/studying.png</file>
   </qresource>
