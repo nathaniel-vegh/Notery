@@ -121,9 +121,9 @@ class Ui_Dialog(QWidget):
         self.label_5.setStyleSheet("color:rgb(255, 117, 124);")
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_5)
-        self.StudentClassLineEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.StudentClassLineEdit.setObjectName("StudentClassLineEdit")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.StudentClassLineEdit)
+        self.studentGradeLineEdit = QtWidgets.QLineEdit(self.layoutWidget)
+        self.studentGradeLineEdit.setObjectName("studentGradeLineEdit")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.studentGradeLineEdit)
         self.label_6 = QtWidgets.QLabel(self.layoutWidget)
         font = QtGui.QFont()
         font.setFamily("Candara")
@@ -190,13 +190,14 @@ class Ui_Dialog(QWidget):
         self.label_8.setText(_translate("Dialog", "Sign up for Notery"))
         self.label_3.setText(_translate("Dialog", "Student Name"))
         self.label_4.setText(_translate("Dialog", "Student Id"))
-        self.label_5.setText(_translate("Dialog", "Class"))
+        self.label_5.setText(_translate("Dialog", "Grade"))
         self.label_6.setText(_translate("Dialog", "Password"))
         self.label_7.setText(_translate("Dialog", "Confirm Password"))
         self.CreateAccountButton.setText(_translate("Dialog", "Create an account"))
     def SignUp(self):
         studentId = self.StudentIdLineEdit.text()
         studentName = self.StudentNameLineEdit.text()
+        studentGrade = self.studentGradeLineEdit.text()
         password = self.PasswordLineEdit.text()
         confirmPassword = self.ConfirmPassordLineEdit.text()
         if (studentId == "" or studentName == "" or password == "" or confirmPassword == ""):
@@ -221,7 +222,7 @@ class Ui_Dialog(QWidget):
                     print(QMessageBox.warning(self,  "Warning",  "Account already exists", QMessageBox.Ok))
                     return
                 else:
-                    sql = "INSERT INTO User VALUES('%s','%s','%s',0,0,0)" %(studentId,  studentName,  md5password)
+                    sql = "INSERT INTO User VALUES('%s','%s','%s','%s',0,0,0)" %(studentId,  studentName,  md5password, studentGrade)
                     db.exec_(sql)
                     db.commit()
                     print(QMessageBox.information(self, "Congrats!", "You've create your account", QMessageBox.Ok))
