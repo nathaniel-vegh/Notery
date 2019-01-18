@@ -13,12 +13,6 @@
   <property name="windowTitle">
    <string>Notery</string>
   </property>
-  <property name="iconSize">
-   <size>
-    <width>50</width>
-    <height>50</height>
-   </size>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -32,8 +26,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>60</width>
-     <height>60</height>
+     <width>70</width>
+     <height>70</height>
     </size>
    </property>
    <attribute name="toolBarArea">
@@ -42,30 +36,37 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_add_book"/>
-   <addaction name="action_edit_record"/>
+   <addaction name="actionBorrow"/>
+   <addaction name="actionReturn"/>
    <addaction name="action_star"/>
-   <addaction name="action_manage_students"/>
    <addaction name="action_report"/>
    <addaction name="action_settings"/>
-   <addaction name="action_delete"/>
   </widget>
-  <action name="action_add_book">
+  <action name="action_settings">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/E-books-add.png</normaloff>:/rsc/rsc/E-books-add.png</iconset>
+     <normaloff>:/rsc/rsc/settings_button.png</normaloff>:/rsc/rsc/settings_button.png</iconset>
    </property>
    <property name="text">
-    <string>Add Book</string>
+    <string>Settings</string>
    </property>
   </action>
-  <action name="action_manage_students">
+  <action name="actionBorrow">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/manage_students_button.png</normaloff>:/rsc/rsc/manage_students_button.png</iconset>
+     <normaloff>:/rsc/rsc/borrow.png</normaloff>:/rsc/rsc/borrow.png</iconset>
    </property>
    <property name="text">
-    <string>Manage Students</string>
+    <string>Borrow</string>
+   </property>
+  </action>
+  <action name="actionReturn">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/rsc/rsc/return.png</normaloff>:/rsc/rsc/return.png</iconset>
+   </property>
+   <property name="text">
+    <string>Return</string>
    </property>
   </action>
   <action name="action_report">
@@ -77,15 +78,6 @@
     <string>Report</string>
    </property>
   </action>
-  <action name="action_delete">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/trash_button.png</normaloff>:/rsc/rsc/trash_button.png</iconset>
-   </property>
-   <property name="text">
-    <string>Delete</string>
-   </property>
-  </action>
   <action name="action_star">
    <property name="icon">
     <iconset resource="resources.qrc">
@@ -93,33 +85,6 @@
    </property>
    <property name="text">
     <string>Star</string>
-   </property>
-  </action>
-  <action name="action_settings">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/settings_button.png</normaloff>:/rsc/rsc/settings_button.png</iconset>
-   </property>
-   <property name="text">
-    <string>Settings</string>
-   </property>
-  </action>
-  <action name="action_add_record">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/add_record_button.png</normaloff>:/rsc/rsc/add_record_button.png</iconset>
-   </property>
-   <property name="text">
-    <string>Add Record</string>
-   </property>
-  </action>
-  <action name="action_edit_record">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/E-books-edit.png</normaloff>:/rsc/rsc/E-books-edit.png</iconset>
-   </property>
-   <property name="text">
-    <string>Edit Record</string>
    </property>
   </action>
  </widget>
