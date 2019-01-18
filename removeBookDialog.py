@@ -90,7 +90,7 @@ class dropBookDialog(QDialog):
         self.dropBookButton.setFont(font)
         self.dropBookButton.setFixedHeight(32)
         self.dropBookButton.setFixedWidth(280)
-        self.dropBookButton.setStyleSheet("background-color:rgb(255, 117, 1);\n"
+        self.dropBookButton.setStyleSheet("background-color:rgb(255, 117, 124);\n"
 "color:white;")
         self.layout.setVerticalSpacing(10)
 
