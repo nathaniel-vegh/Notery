@@ -7,21 +7,30 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from addBookDialog import addBookDialog
+from removeBookDialog import dropBookDialog
+from bookStorage import BookStorageViewer
+from userManageDialog import UserManage
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(973, 582)
+        MainWindow.resize(950, 580)
         MainWindow.setIconSize(QtCore.QSize(50, 50))
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralWidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 951, 491))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralWidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralWidget)
+        self.storageView = BookStorageViewer()
+        self.verticalLayout.addWidget(self.storageView)
         self.toolBar = QtWidgets.QToolBar(MainWindow)
         self.toolBar.setIconSize(QtCore.QSize(60, 60))
         self.toolBar.setObjectName("toolBar")
@@ -90,6 +99,12 @@ class Ui_MainWindow(object):
         self.action_settings.setText(_translate("MainWindow", "Settings"))
         self.action_add_record.setText(_translate("MainWindow", "Add Record"))
         self.action_edit_record.setText(_translate("MainWindow", "Edit Record"))
+
+    def addBookButtonClicked(self):
+        addDialog = addBookDialog(self)
+        addDialog.add_book_success_signal.connect(self.storageView.searchButtonClicked)
+        addDialog.show()
+        addDialog.exec_()
 
 import resources_rc
 

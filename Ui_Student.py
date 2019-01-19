@@ -7,13 +7,13 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from BookStorage import BookStorageViewer
+from bookStorage import BookStorageViewer
 
-class Ui_self(object):
-    def setupUi(self, self):
-        self.setObjectName("self")
-        self.resize(950, 580)
-        self.centralWidget = QtWidgets.QWidget(self)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(950, 580)
+        self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralWidget)
         self.gridLayout.setObjectName("gridLayout")
@@ -22,32 +22,32 @@ class Ui_self(object):
         self.storageView = BookStorageViewer()
         self.verticalLayout.addWidget(self.storageView)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
-        self.setCentralWidget(self.centralWidget)
-        self.toolBar = QtWidgets.QToolBar(self)
+        MainWindow.setCentralWidget(self.centralWidget)
+        self.toolBar = QtWidgets.QToolBar(MainWindow)
         self.toolBar.setIconSize(QtCore.QSize(70, 70))
         self.toolBar.setObjectName("toolBar")
-        self.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
-        self.action_settings = QtWidgets.QAction(self)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
+        self.action_settings = QtWidgets.QAction(MainWindow)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/rsc/rsc/settings_button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_settings.setIcon(icon)
         self.action_settings.setObjectName("action_settings")
-        self.actionBorrow = QtWidgets.QAction(self)
+        self.actionBorrow = QtWidgets.QAction(MainWindow)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/rsc/rsc/borrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionBorrow.setIcon(icon1)
         self.actionBorrow.setObjectName("actionBorrow")
-        self.actionReturn = QtWidgets.QAction(self)
+        self.actionReturn = QtWidgets.QAction(MainWindow)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/rsc/rsc/return.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionReturn.setIcon(icon2)
         self.actionReturn.setObjectName("actionReturn")
-        self.action_report = QtWidgets.QAction(self)
+        self.action_report = QtWidgets.QAction(MainWindow)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(":/rsc/rsc/report.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_report.setIcon(icon3)
         self.action_report.setObjectName("action_report")
-        self.action_star = QtWidgets.QAction(self)
+        self.action_star = QtWidgets.QAction(MainWindow)
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(":/rsc/rsc/star_button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_star.setIcon(icon4)
@@ -58,27 +58,26 @@ class Ui_self(object):
         self.toolBar.addAction(self.action_report)
         self.toolBar.addAction(self.action_settings)
 
-        self.retranslateUi(self)
-        QtCore.QMetaObject.connectSlotsByName(self)
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, self):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("self", "Notery"))
-        self.toolBar.setWindowTitle(_translate("self", "toolBar"))
-        self.action_settings.setText(_translate("self", "Settings"))
-        self.actionBorrow.setText(_translate("self", "Borrow"))
-        self.actionReturn.setText(_translate("self", "Return"))
-        self.action_report.setText(_translate("self", "Report"))
-        self.action_star.setText(_translate("self", "Star"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Notery"))
+        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+        self.action_settings.setText(_translate("MainWindow", "Settings"))
+        self.actionBorrow.setText(_translate("MainWindow", "Borrow"))
+        self.actionReturn.setText(_translate("MainWindow", "Return"))
+        self.action_report.setText(_translate("MainWindow", "Report"))
+        self.action_star.setText(_translate("MainWindow", "Star"))
 
 import resources_rc
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    self = QtWidgets.Qself()
-    ui = Ui_self()
-    ui.setupUi(self)
-    self.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
-
