@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>580</height>
+    <width>973</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Notery</string>
+   <string>MainWindow</string>
   </property>
   <property name="iconSize">
    <size>
@@ -20,11 +20,17 @@
    </size>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </item>
-   </layout>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>951</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -42,9 +48,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_add_book"/>
+   <addaction name="action_add_record"/>
    <addaction name="action_edit_record"/>
    <addaction name="action_star"/>
+   <addaction name="action_add_book"/>
    <addaction name="action_manage_students"/>
    <addaction name="action_report"/>
    <addaction name="action_settings"/>
@@ -53,7 +60,7 @@
   <action name="action_add_book">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/E-books-add.png</normaloff>:/rsc/rsc/E-books-add.png</iconset>
+     <normaloff>:/rsc/rsc/manage_ebooks_button.png</normaloff>:/rsc/rsc/manage_ebooks_button.png</iconset>
    </property>
    <property name="text">
     <string>Add Book</string>
@@ -116,7 +123,7 @@
   <action name="action_edit_record">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rsc/rsc/E-books-edit.png</normaloff>:/rsc/rsc/E-books-edit.png</iconset>
+     <normaloff>:/rsc/rsc/edit_button.png</normaloff>:/rsc/rsc/edit_button.png</iconset>
    </property>
    <property name="text">
     <string>Edit Record</string>

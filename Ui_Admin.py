@@ -7,15 +7,12 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from addBookDialog import addBookDialog
-from removeBookDialog import dropBookDialog
 from BookStorage import BookStorageViewer
-from UserManage import UserManage
 
+<<<<<<< HEAD
 class Ui_Admin(QWidget):
     def __init__(self):
         super().__init__()
@@ -25,22 +22,41 @@ class Ui_Admin(QWidget):
         self.setObjectName("self")
         self.resize(950, 580)
         self.centralWidget = QtWidgets.QWidget(self)
+=======
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        font = QFont()
+        font.setFamily("Candara")
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(973, 582)
+        MainWindow.setIconSize(QtCore.QSize(50, 50))
+        self.centralWidget = QtWidgets.QWidget(MainWindow)
+>>>>>>> parent of 294faff... Finished the student management page and updated the admin page
         self.centralWidget.setObjectName("centralWidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralWidget)
-        self.gridLayout.setObjectName("gridLayout")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralWidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 951, 491))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
+<<<<<<< HEAD
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
         self.setCentralWidget(self.centralWidget)
         self.storageView = BookStorageViewer()
         self.verticalLayout.addWidget(self.storageView)
         self.toolBar = QtWidgets.QToolBar(self)
+=======
+        self.storageView = BookStorageViewer()
+        self.verticalLayout.addWidget(self.storageView)
+        MainWindow.setCentralWidget(self.centralWidget)
+        self.toolBar = QtWidgets.QToolBar(MainWindow)
+>>>>>>> parent of 294faff... Finished the student management page and updated the admin page
         self.toolBar.setIconSize(QtCore.QSize(60, 60))
         self.toolBar.setObjectName("toolBar")
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.action_add_book = QtWidgets.QAction(self)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/rsc/rsc/E-books-add.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/rsc/rsc/manage_ebooks_button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_add_book.setIcon(icon)
         self.action_add_book.setObjectName("action_add_book")
         self.action_manage_students = QtWidgets.QAction(self)
@@ -75,16 +91,18 @@ class Ui_Admin(QWidget):
         self.action_add_record.setObjectName("action_add_record")
         self.action_edit_record = QtWidgets.QAction(self)
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/rsc/rsc/E-books-edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(":/rsc/rsc/edit_button.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_edit_record.setIcon(icon7)
         self.action_edit_record.setObjectName("action_edit_record")
-        self.toolBar.addAction(self.action_add_book)
+        self.toolBar.addAction(self.action_add_record)
         self.toolBar.addAction(self.action_edit_record)
         self.toolBar.addAction(self.action_star)
+        self.toolBar.addAction(self.action_add_book)
         self.toolBar.addAction(self.action_manage_students)
         self.toolBar.addAction(self.action_report)
         self.toolBar.addAction(self.action_settings)
         self.toolBar.addAction(self.action_delete)
+<<<<<<< HEAD
         #self.toolBar.actionTriggered[self.action_add_book].connect(self.AddBookButtonClicked)
 
 
@@ -96,9 +114,15 @@ class Ui_Admin(QWidget):
         addDialog.add_book_success_signal.connect(self.storageView.searchButtonClicked)
         addDialog.show()
         addDialog.exec_()
+=======
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+>>>>>>> parent of 294faff... Finished the student management page and updated the admin page
 
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
+<<<<<<< HEAD
         self.setWindowTitle(_translate("self", "Notery"))
         self.toolBar.setWindowTitle(_translate("self", "toolBar"))
         self.action_add_book.setText(_translate("self", "Add Book"))
@@ -109,14 +133,34 @@ class Ui_Admin(QWidget):
         self.action_settings.setText(_translate("self", "Settings"))
         self.action_add_record.setText(_translate("self", "Add Record"))
         self.action_edit_record.setText(_translate("self", "Edit Record"))
+=======
+        MainWindow.setWindowTitle(_translate("Notery", "Notery"))
+        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
+        self.action_add_book.setText(_translate("MainWindow", "Add Book"))
+        self.action_manage_students.setText(_translate("MainWindow", "Manage Students"))
+        self.action_report.setText(_translate("MainWindow", "Report"))
+        self.action_delete.setText(_translate("MainWindow", "Delete"))
+        self.action_star.setText(_translate("MainWindow", "Star"))
+        self.action_settings.setText(_translate("MainWindow", "Settings"))
+        self.action_add_record.setText(_translate("MainWindow", "Add Record"))
+        self.action_edit_record.setText(_translate("MainWindow", "Edit Record"))
+>>>>>>> parent of 294faff... Finished the student management page and updated the admin page
 
 import resources_rc
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+<<<<<<< HEAD
     app.setWindowIcon(QIcon("./rsc/ereader.png"))
     mainWindow = Ui_Admin()
     mainWindow.show()
+=======
+    app.setWindowIcon(QIcon('./rsc/ereader.png'))
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+>>>>>>> parent of 294faff... Finished the student management page and updated the admin page
     sys.exit(app.exec_())
 

@@ -1,9 +1,5 @@
 <RCC>
   <qresource prefix="rsc">
-    <file>rsc/return.png</file>
-    <file>rsc/borrow.png</file>
-    <file>rsc/E-books-add.png</file>
-    <file>rsc/E-books-edit.png</file>
     <file>rsc/add_record_button.png</file>
     <file>rsc/edit_button.png</file>
     <file>rsc/manage_ebooks_button.png</file>
