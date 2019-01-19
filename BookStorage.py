@@ -227,7 +227,7 @@ class BookStorageViewer(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon("./images/MainWindow_1.png"))
+    app.setWindowIcon(QIcon("./images/self_1.png"))
     mainMindow = BookStorageViewer()
     mainMindow.show() 
     sys.exit(app.exec_())
