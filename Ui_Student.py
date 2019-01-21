@@ -74,8 +74,8 @@ class Ui_Student(QMainWindow):
         self.action_allBooks = QtWidgets.QAction(self)
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap(":/rsc/rsc/manage_ebooks_button.png"), QtGui.QIcon.Normal,  QtGui.QIcon.Off)
-        self.action_status.setIcon(icon6)
-        self.action_status.setObjectName("action_all_books")
+        self.action_allBooks.setIcon(icon6)
+        self.action_allBooks.setObjectName("action_all_books")
 
         self.toolBar.addAction(self.actionBorrow)
         self.toolBar.addAction(self.actionReturn)

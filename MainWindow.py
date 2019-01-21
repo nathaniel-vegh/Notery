@@ -36,6 +36,7 @@ class MainWindow(QMainWindow):
 
     def adminSignIn(self):
         sip.delete(self.widget)
+        self.resize(950, 580)
         self.widget = Ui_Admin()
         self.setCentralWidget(self.widget)
         self.signUpAction.setEnabled(True)

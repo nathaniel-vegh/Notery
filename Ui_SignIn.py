@@ -144,7 +144,7 @@ class Ui_SignIn(QWidget):
         else:
             if(studentId == query.value(0) and hl.hexdigest() == query.value(2)):
                 # If is admin
-                if (query.value(3)==1):
+                if (query.value(4)==1):
                     self.is_admin_signal.emit()
                 else:
                     self.is_student_signal.emit(studentId)
