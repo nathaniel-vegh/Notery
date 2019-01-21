@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project E-Book -->
-<!-- Saved: 2019-01-19, 11:26:17 -->
+<!-- Saved: 2019-01-20, 13:13:03 -->
 <!-- Copyright (C) 2019 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -13,16 +13,19 @@
   <Email></Email>
   <Eol index="0"/>
   <Sources>
-    <Source>bookStorage.py</Source>
+    <Source>MainWindow.py</Source>
     <Source>Ui_Admin.py</Source>
     <Source>Ui_SignIn.py</Source>
     <Source>Ui_SignUp.py</Source>
     <Source>Ui_Student.py</Source>
-    <Source>userManageDialog.py</Source>
     <Source>__init__.py</Source>
     <Source>addBookDialog.py</Source>
+    <Source>bookStorage.py</Source>
     <Source>borrowBookDialog.py</Source>
+    <Source>borrowStatus.py</Source>
     <Source>removeBookDialog.py</Source>
+    <Source>returnBookDialog.py</Source>
+    <Source>userManageDialog.py</Source>
   </Sources>
   <Forms>
     <Form>Admin.ui</Form>

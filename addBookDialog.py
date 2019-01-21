@@ -42,10 +42,10 @@ class addBookDialog(QDialog):
         self.publishTime.setDisplayFormat("yyyy-MM-dd")
         self.addNumEdit = QLineEdit()
 
-        self.bookNameEdit.setMaxLength(10)
+        self.bookNameEdit.setMaxLength(30)
         self.bookIdEdit.setMaxLength(6)
-        self.authNameEdit.setMaxLength(10)
-        self.publisherEdit.setMaxLength(10)
+        self.authNameEdit.setMaxLength(20)
+        self.publisherEdit.setMaxLength(30)
         self.addNumEdit.setMaxLength(12)
         self.addNumEdit.setValidator(QIntValidator())
 

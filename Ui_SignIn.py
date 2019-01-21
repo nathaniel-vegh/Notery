@@ -14,29 +14,34 @@ from PyQt5.QtCore import *
 import hashlib
 from PyQt5.QtSql import *
 
-class Ui_Dialog(QWidget):
+class Ui_SignIn(QWidget):
     is_admin_signal =  pyqtSignal()
     is_student_signal = pyqtSignal(str)
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(486, 309)
+    
+    def __init__(self):
+        super(Ui_SignIn,  self).__init__()
+        self.resize(486,  309)
+        self.setWindowTitle("Notery")
+        self.setupUi()
+        
+    def setupUi(self):
         #Dialog.setStyleSheet("background-color:rgb(255, 255, 255)")
-        Dialog.setSizeGripEnabled(True)
-        self.SignUpButton = QtWidgets.QPushButton(Dialog)
-        self.SignUpButton.setGeometry(QtCore.QRect(426, 5, 61, 31))
+        #self.setSizeGripEnabled(True)
+        #self.SignUpButton = QtWidgets.QPushButton(self)
+        #self.SignUpButton.setGeometry(QtCore.QRect(426, 5, 61, 31))
         font = QtGui.QFont()
         font.setFamily("Candara")
         font.setPointSize(11)
-        self.SignUpButton.setFont(font)
-        self.SignUpButton.setStyleSheet("color:rgb(32, 208, 194)")
-        self.SignUpButton.setFlat(True)
-        self.SignUpButton.setObjectName("SignUpButton")
-        self.line = QtWidgets.QFrame(Dialog)
+        #self.SignUpButton.setFont(font)
+        #self.SignUpButton.setStyleSheet("color:rgb(32, 208, 194)")
+        #self.SignUpButton.setFlat(True)
+        #self.SignUpButton.setObjectName("SignUpButton")
+        self.line = QtWidgets.QFrame(self)
         self.line.setGeometry(QtCore.QRect(0, 33, 491, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(13, 0, 91, 41))
         font = QtGui.QFont()
         font.setFamily("Bauhaus 93")
@@ -46,17 +51,17 @@ class Ui_Dialog(QWidget):
 "")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.label_15 = QtWidgets.QLabel(Dialog)
-        self.label_15.setGeometry(QtCore.QRect(273, 10, 161, 20))
+        #self.label_15 = QtWidgets.QLabel(self)
+        #self.label_15.setGeometry(QtCore.QRect(273, 10, 161, 20))
         font = QtGui.QFont()
         font.setFamily("Candara")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.label_15.setFont(font)
-        self.label_15.setStyleSheet("color:rgb(14, 120, 134)")
-        self.label_15.setObjectName("label_15")
-        self.label = QtWidgets.QLabel(Dialog)
+        #self.label_15.setFont(font)
+        #self.label_15.setStyleSheet("color:rgb(14, 120, 134)")
+        #self.label_15.setObjectName("label_15")
+        self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(172, 52, 128, 128))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -66,7 +71,7 @@ class Ui_Dialog(QWidget):
         self.label.setStyleSheet("background-image:url(:/rsc/rsc/studying.png)")
         self.label.setText("")
         self.label.setObjectName("label")
-        self.widget = QtWidgets.QWidget(Dialog)
+        self.widget = QtWidgets.QWidget(self)
         self.widget.setGeometry(QtCore.QRect(140, 190, 191, 48))
         self.widget.setObjectName("widget")
         self.formLayout_2 = QtWidgets.QFormLayout(self.widget)
@@ -81,7 +86,7 @@ class Ui_Dialog(QWidget):
         self.SignInPasswordLineEdit = QtWidgets.QLineEdit(self.widget)
         self.SignInPasswordLineEdit.setObjectName("SignInPasswordLineEdit")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.SignInPasswordLineEdit)
-        self.SignInButton = QtWidgets.QPushButton(Dialog)
+        self.SignInButton = QtWidgets.QPushButton(self)
         self.SignInButton.setGeometry(QtCore.QRect(164, 250, 152, 31))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -104,15 +109,15 @@ class Ui_Dialog(QWidget):
 
         self.SignInButton.clicked.connect(self.SignInCheck)
         
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(self)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.SignUpButton.setText(_translate("Dialog", "Sign up"))
+        #self.SignUpButton.setText(_translate("Dialog", "Sign up"))
         self.label_2.setText(_translate("Dialog", "Notery"))
-        self.label_15.setText(_translate("Dialog", "Don\'t have an account?"))
+        #self.label_15.setText(_translate("Dialog", "Don\'t have an account?"))
         self.IdLineEdit.setPlaceholderText(_translate("Dialog", "Id"))
         self.SignInPasswordLineEdit.setPlaceholderText(_translate("Dialog", "Password"))
         self.SignInButton.setText(_translate("Dialog", "Sign In"))
@@ -153,10 +158,9 @@ import resources_rc
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("./rsc/ereader.png"))
+    mainWindow = Ui_SignIn()
+    mainWindow.show()
     sys.exit(app.exec_())
 

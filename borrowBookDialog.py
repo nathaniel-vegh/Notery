@@ -100,7 +100,7 @@ class borrowBookDialog(QDialog):
             print(QMessageBox.warning(self, "Warning", "The book you want to borrow is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
         db = QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName('FBLAE-Book2dbebook.db')
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
 

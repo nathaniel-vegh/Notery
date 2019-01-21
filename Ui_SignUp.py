@@ -14,14 +14,17 @@ from PyQt5.QtCore import *
 from PyQt5.QtSql import *
 import hashlib
 
-class Ui_Dialog(QWidget):
+class Ui_SignUp(QWidget):
     student_sign_up_signal = pyqtSignal(str)
-        
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Notery")
-        Dialog.resize(486, 301)
-        Dialog.setSizeGripEnabled(True)
-        self.label = QtWidgets.QLabel(Dialog)
+    
+    def __init__(self):
+        super(Ui_SignUp,  self).__init__()
+        self.resize(486,  300)
+        self.setWindowTitle("Notery")
+        self.setupUi()
+    
+    def setupUi(self):
+        self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(10, 100, 128, 128))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -31,7 +34,7 @@ class Ui_Dialog(QWidget):
         self.label.setStyleSheet("background-image:url(:/rsc/rsc/studying.png)")
         self.label.setText("")
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(10, -3, 91, 41))
         font = QtGui.QFont()
         font.setFamily("Bauhaus 93")
@@ -41,31 +44,31 @@ class Ui_Dialog(QWidget):
 "")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.line = QtWidgets.QFrame(Dialog)
+        self.line = QtWidgets.QFrame(self)
         self.line.setGeometry(QtCore.QRect(-3, 30, 491, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.label_9 = QtWidgets.QLabel(Dialog)
-        self.label_9.setGeometry(QtCore.QRect(260, 7, 181, 20))
+        #self.label_9 = QtWidgets.QLabel(self)
+        #self.label_9.setGeometry(QtCore.QRect(260, 7, 181, 20))
         font = QtGui.QFont()
         font.setFamily("Candara")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.label_9.setFont(font)
-        self.label_9.setStyleSheet("color:rgb(14, 120, 134)")
-        self.label_9.setObjectName("label_9")
-        self.SignInButton = QtWidgets.QPushButton(Dialog)
-        self.SignInButton.setGeometry(QtCore.QRect(430, 2, 51, 31))
+        #self.label_9.setFont(font)
+        #self.label_9.setStyleSheet("color:rgb(14, 120, 134)")
+        #self.label_9.setObjectName("label_9")
+        #self.SignInButton = QtWidgets.QPushButton(self)
+        #self.SignInButton.setGeometry(QtCore.QRect(430, 2, 51, 31))
         font = QtGui.QFont()
         font.setFamily("Candara")
         font.setPointSize(11)
-        self.SignInButton.setFont(font)
-        self.SignInButton.setStyleSheet("color:rgb(32, 208, 194)")
-        self.SignInButton.setFlat(True)
-        self.SignInButton.setObjectName("SignInButton")
-        self.layoutWidget = QtWidgets.QWidget(Dialog)
+        #self.SignInButton.setFont(font)
+        #self.SignInButton.setStyleSheet("color:rgb(32, 208, 194)")
+        #self.SignInButton.setFlat(True)
+        #self.SignInButton.setObjectName("SignInButton")
+        self.layoutWidget = QtWidgets.QWidget(self)
         self.layoutWidget.setGeometry(QtCore.QRect(160, 58, 293, 221))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
@@ -178,15 +181,15 @@ class Ui_Dialog(QWidget):
 #        self.PasswordLineEdit.returnPressed.connect(self.SignUp)
 #        self.ConfirmPassordLineEdit.returnPressed.connect(self.SignUp)
         
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label_2.setText(_translate("Dialog", "Notery"))
-        self.label_9.setText(_translate("Dialog", "Already have an account?"))
-        self.SignInButton.setText(_translate("Dialog", "Sign in"))
+        #self.label_9.setText(_translate("Dialog", "Already have an account?"))
+        #self.SignInButton.setText(_translate("Dialog", "Sign in"))
         self.label_8.setText(_translate("Dialog", "Sign up for Notery"))
         self.label_3.setText(_translate("Dialog", "Student Name"))
         self.label_4.setText(_translate("Dialog", "Student Id"))
@@ -234,9 +237,8 @@ import resources_rc
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    Dialog = QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    app.setWindowIcon(QIcon("./rsc/ereader.png"))
+    mainWindow = Ui_SignUp()
+    mainWindow.show()
     sys.exit(app.exec_())
 
