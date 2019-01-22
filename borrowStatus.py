@@ -21,7 +21,7 @@ class BorrowStatusViewer(QWidget):
         self.borrowedLabel = QLabel("Not Returned:")
         self.returnedLabel = QLabel("Returned:")
         self.borrowedLabel.setFixedHeight(32)
-        self.borrowedLabel.setFixedWidth(120)
+        self.borrowedLabel.setFixedWidth(120) 
         self.returnedLabel.setFixedHeight(32)
         self.returnedLabel.setFixedWidth(120)
         font = QFont()

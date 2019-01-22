@@ -118,13 +118,16 @@ class Ui_Student(QMainWindow):
         returnDialog.exec_()
         
     def allBookButtonClicked(self):
-        self.gridLayout.removeWidget(self.borrowStatusView)
-        sip.delete(self.borrowStatusView)
-        self.borrowStatusView = BorrowStatusViewer(self.studentId)
-        self.storageView = BookStorageViewer()
-        self.gridLayout.addWidget(self.storageView)
-        self.action_allBooks.setEnabled(False)
-        self.action_status.setEnabled(True)
+        try:
+            self.gridLayout.removeWidget(self.borrowStatusView)
+            sip.delete(self.borrowStatusView)
+            self.borrowStatusView = BorrowStatusViewer(self.studentId)
+            self.storageView = BookStorageViewer()
+            self.gridLayout.addWidget(self.storageView)
+            self.action_allBooks.setEnabled(False)
+            self.action_status.setEnabled(True)
+        except:
+            pass
         return
         
     def myBookStatusClicked(self):

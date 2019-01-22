@@ -14,7 +14,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(parent)
         self.layout = QHBoxLayout()
         self.widget = Ui_SignIn()
-        self.resize(486, 320)
+        self.resize(470, 320)
         self.setWindowTitle("Notery")
         self.setCentralWidget(self.widget)
         bar = self.menuBar()

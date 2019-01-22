@@ -102,7 +102,7 @@ class returnBookDialog(QDialog):
             print(QMessageBox.warning(self, "Warning", "The book you are returning is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
         db = db = QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName('./db/LibraryManagement.db')
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
         sql = "SELECT * FROM User_Book WHERE StudentId='%s' AND BookId='%s' AND BorrowState=1" %(self.studentId,BookId)
@@ -121,7 +121,7 @@ class returnBookDialog(QDialog):
         query.exec_(sql)
         db.commit()
         print(QMessageBox.information(self, "Information", "Book returned", QMessageBox.Yes, QMessageBox.Yes))
-        self.return_book_success_signal.emit()
+        self.return_book_successful_signal.emit()
         self.close()
         return
 
@@ -133,7 +133,7 @@ class returnBookDialog(QDialog):
             self.authNameEdit.clear()
             self.publishTime.clear()
         db = QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName('./db/LibraryManagement.db')
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
         sql = "SELECT * FROM User_Book WHERE StudentId='%s' AND BookId='%s' AND BorrowState=1" % (

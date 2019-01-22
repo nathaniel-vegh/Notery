@@ -148,7 +148,7 @@ class dropBookDialog(QDialog):
         db.commit()
 
         timenow = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        sql = "INSERT INTO buyordrop VALUES ('%s','%s',0,%d)" % (bookId, timenow, dropNum)
+        sql = "INSERT INTO AddOrDrop VALUES ('%s','%s',0,%d)" % (bookId, timenow, dropNum)
         query.exec_(sql)
         db.commit()
         print(QMessageBox.information(self, "Information", "Book successfully removed", QMessageBox.Yes, QMessageBox.Yes))

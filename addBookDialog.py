@@ -122,7 +122,7 @@ class addBookDialog(QDialog):
             query.exec_(sql)
             db.commit()
             timenow = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-            sql = "INSERT INTO buyordrop VALUES ('%s','%s',1,%d)" % (bookId, timenow, addBookNum)
+            sql = "INSERT INTO AddOrDrop VALUES ('%s','%s',1,%d)" % (bookId, timenow, addBookNum)
             query.exec_(sql)
             db.commit()
             print(QMessageBox.information(self, "Information", "Book added!", QMessageBox.Yes, QMessageBox.Yes))

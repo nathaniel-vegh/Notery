@@ -124,9 +124,9 @@ class Ui_SignUp(QWidget):
         self.label_5.setStyleSheet("color:rgb(255, 117, 124);")
         self.label_5.setObjectName("label_5")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_5)
-        self.studentGradeLineEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.studentGradeLineEdit.setObjectName("studentGradeLineEdit")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.studentGradeLineEdit)
+        self.StudentGradeLineEdit = QtWidgets.QLineEdit(self.layoutWidget)
+        self.StudentGradeLineEdit.setObjectName("StudentGradeLineEdit")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.StudentGradeLineEdit)
         self.label_6 = QtWidgets.QLabel(self.layoutWidget)
         font = QtGui.QFont()
         font.setFamily("Candara")
@@ -200,7 +200,7 @@ class Ui_SignUp(QWidget):
     def SignUp(self):
         studentId = self.StudentIdLineEdit.text()
         studentName = self.StudentNameLineEdit.text()
-        studentGrade = self.studentGradeLineEdit.text()
+        studentGrade = self.StudentGradeLineEdit.text()
         password = self.PasswordLineEdit.text()
         confirmPassword = self.ConfirmPassordLineEdit.text()
         if (studentId == "" or studentName == "" or password == "" or confirmPassword == ""):

@@ -7,7 +7,7 @@ import time
 
 
 class borrowBookDialog(QDialog):
-    borrow_book_successful_signal=pyqtSignal()
+    borrow_book_successful_signal = pyqtSignal()
 
     def __init__(self, StudentId,  parent=None):
         super(borrowBookDialog, self).__init__(parent)
@@ -32,7 +32,7 @@ class borrowBookDialog(QDialog):
         self.publisherLabel = QLabel("Publisher:")
         self.publishDateLabel = QLabel("Publish Date:")
 
-        self.returnBookButton = QPushButton("Borrow")
+        self.borrowBookButton = QPushButton("Borrow")
 
         self.bookNameEdit = QLineEdit()
         self.bookIdEdit = QLineEdit()
@@ -41,7 +41,7 @@ class borrowBookDialog(QDialog):
         self.categoryComboBox.addItems(BookCategory)
         self.publisherEdit = QLineEdit()
         self.publishTime = QLineEdit()
-        # self.publishDateEdit = QLineEdit()
+        self.publishDateEdit = QLineEdit()
 
         self.bookNameEdit.setMaxLength(30)
         self.bookIdEdit.setMaxLength(6)
@@ -55,7 +55,7 @@ class borrowBookDialog(QDialog):
         self.layout.addRow(self.categoryLabel, self.categoryComboBox)
         self.layout.addRow(self.publisherLabel, self.publisherEdit)
         self.layout.addRow(self.publishDateLabel, self.publishTime)
-        self.layout.addRow(self.returnBookButton)
+        self.layout.addRow(self.borrowBookButton)
 
         font = QFont()
         font.setFamily("Candara")
@@ -71,27 +71,30 @@ class borrowBookDialog(QDialog):
         self.publishDateLabel.setFont(font)
 
         self.bookNameEdit.setFont(font)
-        #self.bookNameEdit.setReadOnly(True)
-        #self.bookNameEdit.setStyleSheet("background-color:#dddddd")
+        self.bookNameEdit.setReadOnly(True)
+        self.bookNameEdit.setStyleSheet("background-color:#dddddd")
         self.bookIdEdit.setFont(font)
         self.authNameEdit.setFont(font)
-        #self.authNameEdit.setReadOnly(True)
-        #self.authNameEdit.setStyleSheet("background-color:#dddddd")
+        self.authNameEdit.setReadOnly(True)
+        self.authNameEdit.setStyleSheet("background-color:#dddddd")
         self.publisherEdit.setFont(font)
-        #self.publisherEdit.setReadOnly(True)
-        #self.publisherEdit.setStyleSheet("background-color:#dddddd")
+        self.publisherEdit.setReadOnly(True)
+        self.publisherEdit.setStyleSheet("background-color:#dddddd")
         self.publishTime.setFont(font)
-        #self.publishTime.setStyleSheet("background-color:#dddddd")
+        self.publishTime.setStyleSheet("background-color:#dddddd")
         self.categoryComboBox.setFont(font)
-        #self.categoryComboBox.setStyleSheet("background-color:#dddddd")
+        self.categoryComboBox.setStyleSheet("background-color:#dddddd")
 
         font.setPixelSize(16)
-        self.returnBookButton.setFont(font)
-        self.returnBookButton.setFixedHeight(32)
-        self.returnBookButton.setFixedWidth(280)
-        self.returnBookButton.setStyleSheet("background-color:rgb(255, 117, 124);\n"
+        self.borrowBookButton.setFont(font)
+        self.borrowBookButton.setFixedHeight(32)
+        self.borrowBookButton.setFixedWidth(280)
+        self.borrowBookButton.setStyleSheet("background-color:rgb(255, 117, 124);\n"
 "color:white;")
         self.layout.setVerticalSpacing(10)
+        
+        self.borrowBookButton.clicked.connect(self.borrowButtonClicked)
+        self.bookIdEdit.textChanged.connect(self.bookIdEditChanged)
         
         
     def borrowButtonClicked(self):
@@ -99,7 +102,7 @@ class borrowBookDialog(QDialog):
         if (BookId == ""):
             print(QMessageBox.warning(self, "Warning", "The book you want to borrow is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
-        db = QSqlDatabase.addDatabase("QSQLITE")
+        db =  QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
@@ -118,7 +121,7 @@ class borrowBookDialog(QDialog):
             if (borrowNum == 5):
                 QMessageBox.warning(self, "Warning", "You can only borrow 5 books", QMessageBox.Yes, QMessageBox.Yes)
                 return
-        sql = "SELECT COUNT(StudentId) FROM User_Book WHERE  StudentId='%s' AND BookId='%s' AND BorrowState=1" % (
+        sql = "SELECT COUNT(StudentId) FROM User_Book WHERE StudentId='%s' AND BookId='%s' AND BorrowState=1" % (
         self.studentId, BookId)
         query.exec_(sql)
         if (query.next() and query.value(0)):
@@ -131,27 +134,27 @@ class borrowBookDialog(QDialog):
         query.exec_(sql)
         db.commit()
         timenow = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        sql = "INSERT INTO User_Book VALUES ('%s','%s','%s',NULL,1)" % (self.studentId, BookId, timenow)
+        sql = "INSERT INTO User_Book VALUES ('%s','%s','%s','%s',NULL,1)" % (self.studentId+BookId,  self.studentId, BookId, timenow)
         print(sql)
         query.exec_(sql)
         db.commit()
         print(QMessageBox.information(self, "Information", "Thanks for borrowing this book!", QMessageBox.Yes, QMessageBox.Yes))
-        self.borrow_book_success_signal.emit()
+        self.borrow_book_successful_signal.emit()
         self.close()
         return
 
     def bookIdEditChanged(self):
-        bookId = self.bookIdEdit.text()
-        if (bookId == ""):
+        BookId = self.bookIdEdit.text()
+        if (BookId == ""):
             self.bookNameEdit.clear()
             self.publisherEdit.clear()
             self.authNameEdit.clear()
             self.publishTime.clear()
         db = QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName('./db/LibraryManagement.db')
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
-        sql = "SELECT * FROM Book WHERE BookId='%s'" % (bookId)
+        sql = "SELECT * FROM Book WHERE BookId='%s'" % (BookId)
         query.exec_(sql)
         if (query.next()):
             self.bookNameEdit.setText(query.value(0))
