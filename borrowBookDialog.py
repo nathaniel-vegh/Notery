@@ -102,17 +102,18 @@ class borrowBookDialog(QDialog):
         if (BookId == ""):
             print(QMessageBox.warning(self, "Warning", "The book you want to borrow is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
-        db =  QSqlDatabase.addDatabase("QSQLITE")
+        db = db = QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
 
-        sql = "SELECT * FROM Book WHERE BookId='%s'" % BookId
+        sql = "SELECT * FROM Book WHERE BookId='%s' AND NumCanBorrow > 0" % BookId
         query.exec_(sql)
         if (not query.next()):
             print(QMessageBox.warning(self, "Warning", "The book you want to borrow is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
-
+        
+        
         sql = "SELECT COUNT(StudentId) FROM User_Book WHERE StudentId='%s' AND BorrowState=1" % (
             self.studentId)
         query.exec_(sql)
