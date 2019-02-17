@@ -101,7 +101,7 @@ class returnBookDialog(QDialog):
         if (BookId == ""):
             print(QMessageBox.warning(self, "Warning", "The book you are returning is not in our system", QMessageBox.Yes, QMessageBox.Yes))
             return
-        db = db = QSqlDatabase.addDatabase("QSQLITE")
+        db = QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()

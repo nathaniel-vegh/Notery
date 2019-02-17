@@ -106,7 +106,7 @@ class dropBookDialog(QDialog):
             self.dropNumEdit.clear()
             self.publishTime.clear()
         db = QSqlDatabase.addDatabase("QSQLITE")
-        db.setDatabaseName('./db/LibraryManagement.db')
+        db.setDatabaseName('./db/FBLAE-Book2dbebook.db')
         db.open()
         query = QSqlQuery()
         sql = "SELECT * FROM Book WHERE BookId='%s'" % (bookId)

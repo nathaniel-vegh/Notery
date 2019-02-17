@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!DOCTYPE Tasks SYSTEM "Tasks-5.1.dtd">
 <!-- eric6 tasks file for project E-Book -->
-<!-- Saved: 2019-02-16, 19:49:48 -->
-<Tasks version="6.0">
+<!-- Saved: 2019-02-16, 14:44:02 -->
+<Tasks version="5.1">
   <ProjectScanFilter></ProjectScanFilter>
 </Tasks>

@@ -21,7 +21,7 @@ class BorrowStatusViewer(QWidget):
         self.borrowedLabel = QLabel("Not Returned:")
         self.returnedLabel = QLabel("Returned:")
         self.borrowedLabel.setFixedHeight(32)
-        self.borrowedLabel.setFixedWidth(120) 
+        self.borrowedLabel.setFixedWidth(120)
         self.returnedLabel.setFixedHeight(32)
         self.returnedLabel.setFixedWidth(120)
         font = QFont()
@@ -69,7 +69,7 @@ class BorrowStatusViewer(QWidget):
         return
 
     def borrowedQuery(self):
-        sql = "SELECT Book.BookName,Book.BookId,Author,Category,Publisher,PublishTime,BorrowTime  FROM Book,User_Book WHERE Book.BookId=User_Book.BookId AND User_Book.BorrowState=1 AND StudentId='%s'" % self.studentId
+        sql = "SELECT Book.BookName,Book.BookId,Author,Category,Publisher,PublishTime,BorrowTime FROM Book,User_Book WHERE Book.BookId=User_Book.BookId AND User_Book.BorrowState=1 AND StudentId='%s'" % self.studentId
         self.borrowedQueryModel.setQuery(sql)
         return
 

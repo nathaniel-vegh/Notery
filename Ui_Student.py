@@ -34,6 +34,7 @@ class Ui_Student(QMainWindow):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.storageView = BookStorageViewer()
+        self.borrowStatusView = BorrowStatusViewer(self.studentId)
         self.verticalLayout.addWidget(self.storageView)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
         self.setCentralWidget(self.centralWidget)
@@ -76,6 +77,7 @@ class Ui_Student(QMainWindow):
         icon6.addPixmap(QtGui.QPixmap(":/rsc/rsc/manage_ebooks_button.png"), QtGui.QIcon.Normal,  QtGui.QIcon.Off)
         self.action_allBooks.setIcon(icon6)
         self.action_allBooks.setObjectName("action_all_books")
+        self.action_allBooks.setEnabled(False)
 
         self.toolBar.addAction(self.actionBorrow)
         self.toolBar.addAction(self.actionReturn)
@@ -85,7 +87,6 @@ class Ui_Student(QMainWindow):
         self.toolBar.addAction(self.action_status)
         self.toolBar.addAction(self.action_allBooks)
         self.toolBar.actionTriggered[QAction].connect(self.toolBarTriggered)
-
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
 
@@ -103,7 +104,7 @@ class Ui_Student(QMainWindow):
 
     def borrowBookClicked(self):
         borrowDialog = borrowBookDialog(self.studentId,  self)
-        borrowDialog.borrow_book_successful_signal.connect(BorrowStatusViewer.borrowedQuery)
+        borrowDialog.borrow_book_successful_signal.connect(self.borrowStatusView.borrowedQuery)
         borrowDialog.borrow_book_successful_signal.connect(self.storageView.searchButtonClicked)
         borrowDialog.show()
         borrowDialog.exec_()
@@ -111,23 +112,20 @@ class Ui_Student(QMainWindow):
         
     def returnBookClicked(self):
         returnDialog = returnBookDialog(self.studentId,  self)
-        returnDialog.return_book_successful_signal.connect(BorrowStatusViewer.returnedQuery)
-        returnDialog.return_book_successful_signal.connect(BorrowStatusViewer.borrowedQuery)
+        returnDialog.return_book_successful_signal.connect(self.borrowStatusView.returnedQuery)
+        returnDialog.return_book_successful_signal.connect(self.borrowStatusView.borrowedQuery)
         returnDialog.return_book_successful_signal.connect(self.storageView.searchButtonClicked)
         returnDialog.show()
         returnDialog.exec_()
         
     def allBookButtonClicked(self):
-        try:
-            self.gridLayout.removeWidget(self.borrowStatusView)
-            sip.delete(self.borrowStatusView)
-            self.borrowStatusView = BorrowStatusViewer(self.studentId)
-            self.storageView = BookStorageViewer()
-            self.gridLayout.addWidget(self.storageView)
-            self.action_allBooks.setEnabled(False)
-            self.action_status.setEnabled(True)
-        except:
-            pass
+        self.gridLayout.removeWidget(self.borrowStatusView)
+        sip.delete(self.borrowStatusView)
+        self.borrowStatusView = BorrowStatusViewer(self.studentId)
+        self.storageView = BookStorageViewer()
+        self.gridLayout.addWidget(self.storageView)
+        self.action_allBooks.setEnabled(False)
+        self.action_status.setEnabled(True)
         return
         
     def myBookStatusClicked(self):

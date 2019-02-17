@@ -146,7 +146,7 @@ class BookStorageViewer(QWidget):
             self.totalPage = int((self.totalRecord + self.pageRecord - 1) / self.pageRecord)
             label = "/" + str(int(self.totalPage)) + ""
             self.pageLabel.setText(label)
-            queryCondition = ("select * from Book ORDER BY %s  limit %d,%d " % (conditionChoice,index, self.pageRecord))
+            queryCondition = ("select * from Book ORDER BY %s limit %d,%d " % (conditionChoice,index, self.pageRecord))
             self.queryModel.setQuery(queryCondition)
             self.setButtonStatus()
             return
